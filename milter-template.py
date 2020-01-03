@@ -111,6 +111,9 @@ class myMilter(Milter.Base):
   def close(self):
     # always called, even when abort is called.  Clean up
     # any external resources here.
+    if self.fp:
+      self.fp.close()
+      self.fp = None
     return Milter.CONTINUE
 
   def abort(self):
