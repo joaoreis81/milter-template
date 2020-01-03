@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  milter:
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+    network_mode: host
+    #restart: always
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
