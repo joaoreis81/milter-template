@@ -45,6 +45,7 @@ class myMilter(Milter.Base):
     self.fp = None
     self.receiver = self.getsymval('j')
     self.log("connect from %s at %s" % (IPname, hostaddr) )
+    print(datetime.datetime.now())
     if str(datetime.datetime.now()).split(' ')[1].split(':')[2].split('.')[0] == '00':
       print(str(Milter.getdiag()))
 
