@@ -44,10 +44,9 @@ class myMilter(Milter.Base):
     self.H = None
     self.fp = None
     self.receiver = self.getsymval('j')
-    self.log("connect from %s at %s" % (IPname, hostaddr) )
-    print(datetime.datetime.now())
+    #self.log("connect from %s at %s" % (IPname, hostaddr) )
     if str(datetime.datetime.now()).split(' ')[1].split(':')[2].split('.')[0] == '00':
-      print(str(Milter.getdiag()))
+      print("DIAGNOSTICO: " + str(Milter.getdiag()))
 
     return Milter.CONTINUE
 
@@ -70,7 +69,7 @@ class myMilter(Milter.Base):
     self.R = []  # list of recipients
     self.fromparms = Milter.dictfromlist(str)	# ESMTP parms
     self.user = self.getsymval('{auth_authen}')	# authenticated user
-    self.log("mail from:", mailfrom, *str)
+    #self.log("mail from:", mailfrom, *str)
     # NOTE: self.fp is only an *internal* copy of message data.  You
     # must use addheader, chgheader, replacebody to change the message
     # on the MTA.
