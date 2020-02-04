@@ -114,6 +114,7 @@ class myMilter(Milter.Base):
     if self.fp:
       self.fp.close()
       self.fp = None
+      del self.fp
     return Milter.CONTINUE
 
   def abort(self):
