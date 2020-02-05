@@ -11,7 +11,7 @@ RUN dnf install -y epel-release && \
     mkdir -p /var/tmp/cache
 
 #COPY requirements.txt /
-#RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 COPY milter-template.py /
 
 EXPOSE 8801/tcp

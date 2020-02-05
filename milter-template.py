@@ -16,6 +16,9 @@ from socket import AF_INET, AF_INET6
 from Milter.utils import parse_addr
 from multiprocessing import Process as Thread, Queue
 import datetime
+from pympler import muppy
+from pympler import summary
+
 
 logq = Queue(maxsize=4)
 
@@ -47,6 +50,10 @@ class myMilter(Milter.Base):
     #self.log("connect from %s at %s" % (IPname, hostaddr) )
     if str(datetime.datetime.now()).split(' ')[1].split(':')[2].split('.')[0] == '00':
       print("DIAGNOSTICO: " + str(Milter.getdiag()))
+      self.all_objects = muppy.get_objects()
+      self.sum1 = summary.summarize(self.all_objects)
+      summary.print_(self.sum1)
+
 
     return Milter.CONTINUE
 
