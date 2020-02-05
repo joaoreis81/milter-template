@@ -48,16 +48,16 @@ class myMilter(Milter.Base):
     self.H = None
     self.fp = None
     self.receiver = self.getsymval('j')
-    #self.log("connect from %s at %s" % (IPname, hostaddr) )
-    if str(datetime.datetime.now()).split(' ')[1].split(':')[2].split('.')[0] == '00':
-      print("DIAGNOSTICO: " + str(Milter.getdiag()))
-      self.all_objects = muppy.get_objects()
-      self.sum1 = summary.summarize(self.all_objects)
-      summary.print_(self.sum1)
-      tr = classtracker.ClassTracker()
-      tr.track_class(Milter)
-      tr.create_snapshot()
-      tr.stats.print_summary()
+    self.log("connect from %s at %s" % (IPname, hostaddr) )
+    #if str(datetime.datetime.now()).split(' ')[1].split(':')[2].split('.')[0] == '00':
+    #  print("DIAGNOSTICO: " + str(Milter.getdiag()))
+    #  self.all_objects = muppy.get_objects()
+    #  self.sum1 = summary.summarize(self.all_objects)
+    #  summary.print_(self.sum1)
+    #  tr = classtracker.ClassTracker()
+    #  tr.track_class(Milter)
+    #  tr.create_snapshot()
+    #  tr.stats.print_summary()
 
 
     return Milter.CONTINUE
@@ -67,7 +67,7 @@ class myMilter(Milter.Base):
   def hello(self, heloname):
     # (self, 'mailout17.dallas.texas.example.com')
     #self.H = heloname
-    #self.log("HELO %s" % heloname)
+    self.log("HELO %s" % heloname)
     #if heloname.find('.') < 0:	# illegal helo name
     #  # NOTE: example only - too many real braindead clients to reject on this
     #  self.setreply('550','5.7.1','Sheesh people!  Use a proper helo name!')
@@ -81,7 +81,7 @@ class myMilter(Milter.Base):
     self.R = []  # list of recipients
     self.fromparms = Milter.dictfromlist(str)	# ESMTP parms
     self.user = self.getsymval('{auth_authen}')	# authenticated user
-    #self.log("mail from:", mailfrom, *str)
+    self.log("mail from:", mailfrom, *str)
     # NOTE: self.fp is only an *internal* copy of message data.  You
     # must use addheader, chgheader, replacebody to change the message
     # on the MTA.
