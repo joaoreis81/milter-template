@@ -10,7 +10,7 @@ RUN dnf install -y epel-release && \
     dnf clean all && \
     mkdir -p /var/tmp/cache
 
-#COPY requirements.txt /
+COPY requirements.txt /
 RUN pip install -r requirements.txt
 COPY milter-template.py /
 
