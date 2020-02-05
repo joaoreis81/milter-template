@@ -3,7 +3,7 @@ services:
   milter:
     build:
       context: "."
-      dockerfile: "Dockerfile_debian"
+      dockerfile: "Dockerfile"
     network_mode: host
     #restart: always
     volumes:
