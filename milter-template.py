@@ -18,6 +18,7 @@ from multiprocessing import Process as Thread, Queue
 import datetime
 from pympler import muppy
 from pympler import summary
+from pympler import classtracker
 
 
 logq = Queue(maxsize=4)
@@ -53,6 +54,10 @@ class myMilter(Milter.Base):
       self.all_objects = muppy.get_objects()
       self.sum1 = summary.summarize(self.all_objects)
       summary.print_(self.sum1)
+      tr = classtracker.ClassTracker()
+      tr.track_class(Milter)
+      tr.create_snapshot()
+      tr.stats.print_summary()
 
 
     return Milter.CONTINUE
