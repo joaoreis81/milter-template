@@ -139,7 +139,7 @@ class myMilter(Milter.Base):
 
   def abort(self):
     # client disconnected prematurely
-    del self.fp
+    #del self.fp
     return Milter.CONTINUE
 
   ## === Support Functions ===
