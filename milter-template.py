@@ -117,6 +117,10 @@ class myMilter(Milter.Base):
 
   def eom(self):
     self.fp.seek(0)
+    if self.fp:
+      self.fp.close()
+      del self.fp
+      self.fp = None
     #msg = email.message_from_file(self.fp)
     # many milter functions can only be called from eom()
     # example of adding a Bcc:
@@ -128,8 +132,9 @@ class myMilter(Milter.Base):
     # any external resources here.
     if self.fp:
       self.fp.close()
-      self.fp = None
       del self.fp
+      self.fp = None
+
     return Milter.CONTINUE
 
   def abort(self):
