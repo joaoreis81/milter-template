@@ -15,10 +15,7 @@ import sys
 from socket import AF_INET, AF_INET6
 from Milter.utils import parse_addr
 from multiprocessing import Process as Thread, Queue
-import datetime
-from pympler import muppy
-from pympler import summary
-from pympler import classtracker
+
 
 
 logq = Queue(maxsize=4)
@@ -49,16 +46,6 @@ class myMilter(Milter.Base):
     self.fp = None
     self.receiver = self.getsymval('j')
     self.log("connect from %s at %s" % (IPname, hostaddr) )
-    #if str(datetime.datetime.now()).split(' ')[1].split(':')[2].split('.')[0] == '00':
-    #  print("DIAGNOSTICO: " + str(Milter.getdiag()))
-    #  self.all_objects = muppy.get_objects()
-    #  self.sum1 = summary.summarize(self.all_objects)
-    #  summary.print_(self.sum1)
-    #  tr = classtracker.ClassTracker()
-    #  tr.track_class(Milter)
-    #  tr.create_snapshot()
-    #  tr.stats.print_summary()
-
 
     return Milter.CONTINUE
 
@@ -165,7 +152,7 @@ def main():
   bt = Thread(target=background)
   bt.start()
   #socketname = "/home/stuart/pythonsock"
-  socketname = 'inet:8801@127.0.0.1'
+  socketname = 'inet:8801@0.0.0.0'
   timeout = 600
   # Register to have the Milter factory create instances of your class:
   Milter.factory = myMilter

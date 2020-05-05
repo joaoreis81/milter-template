@@ -1,0 +1,75 @@
+###############
+# General
+###############
+compatibility_level=2
+
+# Logging configuration
+maillog_file = /dev/stdout
+
+# Main domain and hostname
+mydomain = citybabyattackedbyrats.io
+myhostname = citybabyattackedbyrats.io
+myorigin = $mydomain
+
+# Queue location
+queue_directory = /queue
+
+# Message size limit
+message_size_limit = 152400000
+
+# Relayed networks
+#mynetworks = 127.0.0.1/32 [::1]/128 172.18.0.0/24
+mynetworks_style = subnet
+
+# Empty alias list to override the configuration variable and disable NIS
+alias_maps =
+
+
+# Only accept virtual emails
+mydestination =
+
+# Recipient delimiter for extended addresses
+recipient_delimiter = +
+
+###############
+# TLS
+###############
+
+# General TLS configuration
+tls_high_cipherlist = EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA256:EECDH:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA128-SHA:AES128-SHA
+tls_preempt_cipherlist = yes
+tls_ssl_options = NO_COMPRESSION
+
+# Outgoing TLS is more flexible because 1. not all receiving servers will
+# support TLS, 2. not all will have and up-to-date TLS stack.
+smtp_tls_security_level = may
+smtp_tls_mandatory_protocols = !SSLv2, !SSLv3
+smtp_tls_protocols =!SSLv2,!SSLv3
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+
+smtpd_use_tls=yes
+smtpd_tls_protocols = !SSLv2, !SSLv3
+smtpd_tls_ciphers = high
+smtpd_tls_security_level = may
+smtpd_tls_loglevel = 1
+# automatizar criação dos certificados a cada instalação...
+smtpd_tls_cert_file = /etc/postfix/smtpd.cert
+smtpd_tls_key_file = /etc/postfix/smtpd.key
+
+
+
+###############
+# Restrictions
+###############
+
+
+
+smtpd_recipient_restrictions =
+    permit_mynetworks
+
+
+transport_maps = hash:/etc/postfix/transport_discard
+
+
+smtpd_milters = {inet:milter:8801, connect_timeout=20s, default_action=accept }
+non_smtpd_milters = {inet:milter:8801, connect_timeout=20s, default_action=accept }

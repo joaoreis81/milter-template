@@ -4,7 +4,16 @@ services:
     build:
       context: "."
       dockerfile: "Dockerfile"
-    network_mode: host
+    #network_mode: host
     #restart: always
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
+  postfix:
+    build:
+      context: "."
+      dockerfile: "postfix/Dockerfile"
+    ports:
+      - "2525:25"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+
