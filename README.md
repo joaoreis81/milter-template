@@ -5,9 +5,10 @@
 ```
 git clone https://github.com/joaoreis81/milter-template.git
 cd milter-template
+mkdir spams
 docker-compose up -d
 ``` 
-Get some .eml (raw email messages) and put it to "spam" directory.
+Get some .eml (raw email messages) and put it to "spams" directory.
 
 <p>Running the tests:</p>
 
