@@ -7,13 +7,16 @@ git clone https://github.com/joaoreis81/milter-template.git
 cd milter-template
 docker-compose up -d
 ``` 
+Get some .eml (raw email messages) and put it to "spam" directory.
 
-<p>Postfix configuration:</p>
+<p>Running the tests:</p>
 
 ```
-postconf -e "smtpd_milters = {inet:127.0.0.1:8801, connect_timeout=20s, default_action=accept }"
-postconf -e "non_smtpd_milters = {inet:127.0.0.1:8801, connect_timeout=20s, default_action=accept }"
-postfix reload
+pip3 install iosmtplib
+python3 ./smtp_client.py
 ```
-
+or
+```
+python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py& python3 ./smtp_client.py&   
+```
 
