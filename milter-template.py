@@ -16,8 +16,8 @@ from socket import AF_INET, AF_INET6
 from Milter.utils import parse_addr
 from multiprocessing import Process as Thread, Queue
 
-from guppy import hpy
-hp = hpy()
+#from guppy import hpy
+#hp = hpy()
 
 
 
@@ -102,7 +102,7 @@ class myMilter(Milter.Base):
 
   @Milter.noreply
   def body(self, chunk):
-    self.before = hp.heap()
+    #self.before = hp.heap()
     self.fp.write(chunk)
     return Milter.CONTINUE
 
