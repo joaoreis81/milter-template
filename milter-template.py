@@ -16,6 +16,9 @@ from socket import AF_INET, AF_INET6
 from Milter.utils import parse_addr
 from multiprocessing import Process as Thread, Queue
 
+from guppy import hpy
+hp = hpy()
+
 
 
 logq = Queue(maxsize=4)
@@ -99,6 +102,7 @@ class myMilter(Milter.Base):
 
   @Milter.noreply
   def body(self, chunk):
+    self.before = hp.heap()
     self.fp.write(chunk)
     return Milter.CONTINUE
 
@@ -117,6 +121,7 @@ class myMilter(Milter.Base):
   def close(self):
     # always called, even when abort is called.  Clean up
     # any external resources here.
+    print(self.before)
     #if self.fp:
       #self.fp.close()
       #del self.fp
