@@ -165,6 +165,8 @@ def main():
   flags += Milter.ADDRCPT
   flags += Milter.DELRCPT
   Milter.set_flags(flags)       # tell Sendmail which features we use
+  #Milter.setdbg(3)
+  Milter.settimeout(10)
   Milter.set_exception_policy(0)
   print("%s milter startup" % time.strftime('%Y%b%d %H:%M:%S'))
   sys.stdout.flush()

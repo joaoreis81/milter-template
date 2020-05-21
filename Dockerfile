@@ -12,7 +12,7 @@ RUN dnf install -y epel-release && \
 
 COPY requirements.txt /
 RUN pip3 install -r requirements.txt
-COPY milter-template.py /
+#COPY milter-template.py /
 
 EXPOSE 8801/tcp
 ENTRYPOINT ["/usr/bin/python3", "-u", "/milter-template.py"]
